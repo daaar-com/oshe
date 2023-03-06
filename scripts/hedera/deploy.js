@@ -1,4 +1,4 @@
-const { Client, TokenCreateTransaction, Hbar, TokenType, Key, PrivateKey} = require("@hashgraph/sdk");
+const { Client, TokenCreateTransaction, Hbar, TokenType, TokenSupplyType, PrivateKey} = require("@hashgraph/sdk");
 require("dotenv").config();
 async function main() {
     console.log('Deployment starting');
@@ -17,6 +17,7 @@ async function main() {
     // Create the transaction and freeze for manual signing
     const transaction = await new TokenCreateTransaction()
         .setTokenType(TokenType.FungibleCommon)
+        .setSupplyType(TokenSupplyType.Finite)
         .setTokenName("OSHE! Token")
         .setTokenSymbol("OSHE")
         .setTreasuryAccountId(myAccountId)
